@@ -1,0 +1,125 @@
+@charset "utf-8";
+/* CSS Document */
+.abs{ color:#F30;}
+.line_wrap {
+  background-color: #54acd4;
+  height: 4px;
+}
+.border_solid{ padding:10px;border:1px dotted #DCDCDC; margin:10px 0px;}
+.h-box p a{ color:#FFDC45;}
+/* log_tab
+---------------------------------------------------------------------*/
+.log_tab {
+    height: 34px;
+    width: 900px;
+}
+.log_tab ul li {
+	float:left;
+}
+.log_tab li {
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    float: left;
+    font-size: 14px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    width: 127px;
+}
+.log_tab li.on_zzjs {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #FFFFFF;
+    background-image: url("../img/tab_1.jpg");
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: repeat;
+    background-size: auto auto;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+/* hors_left
+---------------------------------------------------------------------*/
+.hors_left {
+    display: inline;
+    margin-bottom: 0;
+    margin-left: 75px;
+    margin-right: 0;
+    margin-top: 72px;
+    padding-bottom: 97px;
+    width: 575px;
+}
+/* hors_ul
+---------------------------------------------------------------------*/
+.hors_ul li {
+	padding:0 13px 22px 0;
+}
+.form-label{display:inline-block;text-align: right;padding-top:8px; padding-right:10px; width:90px; font:14px/1.5 arial;}
+.hors_input_in {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background:url(../img/h-x.gif) 0 -64px repeat-x transparent;
+    background-origin: padding-box;
+    border:solid 1px #D3D3D3;
+    height: 28px;
+    line-height: 28px;
+    margin-top: 3px;
+    width: 261px;
+}
+.hors_input_btn {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background:url(../img/h-btn.gif) 0 -149px no-repeat transparent;
+    background-origin: padding-box;
+	border:0 none;
+    color: #FFFFFF;
+    font-size: 14px;
+    height: 33px;
+    line-height: 33px;
+    text-align: center;
+    width: 110px;
+}
+.hors_ul a {
+    color: #2D6AAD;
+    font-size: 12px;
+    height: 33px;
+    line-height: 33px;
+    padding-left: 17px;
+}
+/* hors_right
+---------------------------------------------------------------------*/
+.hors_right {
+    height: 300px;
+    margin-top: 88px;
+    width: 250px;
+    border-left:solid 1px #D3D3D3;
+}
+/* hors_box
+---------------------------------------------------------------------*/
+.hors_box {
+    border-bottom:1px dotted #DCDCDC;
+    margin: 6px 0 0 50px;
+    width: 187px;
+}
+.hors_box p {
+    color: #666666;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+}
+.hors_box a {
+    background:url(../img/h-x.gif) 0 0 repeat-x transparent;
+    border:1px solid #A6D0E7;
+    color: #2D6AAD;
+    float: left;
+    font-size: 12px;
+    height: 27px;
+    line-height: 27px;
+    margin: 10px 22px 28px 22px;
+    text-align: center;
+    width: 76px;
+}
+
+
