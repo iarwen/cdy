@@ -1,18 +1,11 @@
 package com.cdy.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  *<br>
@@ -31,5 +24,11 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @DiscriminatorColumn(name = "post_type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("2")
 public class MainPost extends Post {
+
+    /**
+     * 2014 by RD_wentao_chang
+     * 2014年5月15日 下午3:04:17
+     */
+    private static final long serialVersionUID = -3720420143351850970L;
 
 }

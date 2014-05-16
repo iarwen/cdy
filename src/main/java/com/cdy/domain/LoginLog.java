@@ -11,14 +11,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 @Entity
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "t_login_log")
 public class LoginLog extends BaseDomain {
-	@Id
+  
+    /**
+     * 2014 by RD_wentao_chang
+     * 2014年5月15日 
+     */
+    private static final long serialVersionUID = -5387540448796975006L;
+
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "login_log_id")
 	private int loginLogId;
