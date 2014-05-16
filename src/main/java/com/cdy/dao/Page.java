@@ -10,13 +10,18 @@ import java.util.List;
  */
 public class Page implements Serializable {
 
-	private static int DEFAULT_PAGE_SIZE = 20;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = -3496218783026918868L;
+
+    private static int DEFAULT_PAGE_SIZE = 20;
 
 	private int pageSize = DEFAULT_PAGE_SIZE; // 每页的记录数
 
 	private long start; // 当前页第一条数据在List中的位置,从0开始
 
-	private List data; // 当前页中存放的记录,类型一般为List
+	private List<Object> data; // 当前页中存放的记录,类型一般为List
 
 	private long totalCount; // 总记录数
 
@@ -24,7 +29,7 @@ public class Page implements Serializable {
 	 * 构造方法，只构造空页.
 	 */
 	public Page() {
-		this(0, 0, DEFAULT_PAGE_SIZE, new ArrayList());
+		this(0, 0, DEFAULT_PAGE_SIZE, new ArrayList<Object>());
 	}
 
 	/**
@@ -35,7 +40,7 @@ public class Page implements Serializable {
 	 * @param pageSize  本页容量
 	 * @param data	  本页包含的数据
 	 */
-	public Page(long start, long totalSize, int pageSize, List data) {
+	public Page(long start, long totalSize, int pageSize, List<Object> data) {
 		this.pageSize = pageSize;
 		this.start = start;
 		this.totalCount = totalSize;
@@ -69,7 +74,7 @@ public class Page implements Serializable {
 	/**
 	 * 取当前页中的记录.
 	 */
-	public List getResult() {
+	public List<?> getResult() {
 		return data;
 	}
 

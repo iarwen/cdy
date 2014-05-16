@@ -18,7 +18,7 @@
 <body class="easyui-layout" fit="true">
    
 		<div region="north" border="false" style="overflow:hidden;height:60px;background:#A4BED4;">
-			<h2>Borderå¸å±</h2>
+			<h2>Border</h2>
 		</div>
 		<div region="south" split="true" style="height:50px;background:#efefef;">
 		</div>
