@@ -80,6 +80,6 @@
 	</welcome-file-list>
 	<error-page>
 		<error-code>404</error-code>
-		<location>/admin1/login.jsp</location>
+		<location>/admin/login.jsp</location>
 	</error-page>
 </web-app>
