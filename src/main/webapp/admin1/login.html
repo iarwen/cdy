@@ -1,11 +1,16 @@
-{__NOLAYOUT__}<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>后台管理系统</title>
 	<meta charset="UTF-8">
-    <load href='__PUBLIC__/Css/bootstrap.css'/>
-    <load href="__PUBLIC__/Js/jquery.js"/>
-    <load href="__PUBLIC__/Js/bootstrap.js"/>
+   <link rel="stylesheet" type="text/css" href="./Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="./Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="./Css/style.css" />
+    <script type="text/javascript" src="./Js/jquery.js"></script>
+    <script type="text/javascript" src="./Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="./Js/bootstrap.js"></script>
+    <script type="text/javascript" src="./Js/ckform.js"></script>
+    <script type="text/javascript" src="./Js/common.js"></script>
     <style type="text/css">
         body {
             padding-top: 40px;
@@ -40,26 +45,17 @@
             padding: 7px 9px;
         }
 
-    </style>
-    <script>
-
-        function fleshVerify() {
-            //重载验证码
-            var timenow = new Date().getTime();
-            document.getElementById('verifyImg').src = "{:U('Public/verify')}&" + timenow;
-        }
-    </script>
+    </style>  
 </head>
 <body>
 <div class="container">
 
-    <form class="form-signin" method="post" action="{:U('Public/checkLogin')}">
+    <form class="form-signin" method="post" action="./index.html">
         <h2 class="form-signin-heading">登录系统</h2>
         <input type="text" name="username" class="input-block-level" placeholder="账号">
         <input type="password" name="password" class="input-block-level" placeholder="密码">
         <input type="text" name="verify" class="input-medium" placeholder="验证码">
-        <img id="verifyImg" src="{:U('Public/verify')}" onclick="fleshVerify()" border="0" alt="点击刷新验证码"
-             style="cursor:pointer" align="absmiddle">
+       
         <p><button class="btn btn-large btn-primary" type="submit">登录</button></p>
     </form>
 
