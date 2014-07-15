@@ -27,6 +27,7 @@ public class LoginFilter implements Filter
         try
         {
             String uri = ((HttpServletRequest) request).getRequestURI();
+            System.out.println(1);
             if (this.checkValidata(uri.lastIndexOf(".do") == -1
                     && this.checkValidata(uri.lastIndexOf("Servlet") == -1 && this.checkValidata(uri.lastIndexOf(".jsp") == -1))))
             {
