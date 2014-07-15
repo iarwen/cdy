@@ -8,14 +8,14 @@
 <head>
     <title>后台管理系统</title>
 	<meta charset="UTF-8">
-   <link rel="stylesheet" type="text/css" href="<%=path%>/admin1//Css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="<%=path%>/admin1//Css/bootstrap-responsive.css" />
-    <link rel="stylesheet" type="text/css" href="<%=path%>/admin1//Css/style.css" />
-    <script type="text/javascript" src="<%=path%>/admin1//Js/jquery.js"></script>
-    <script type="text/javascript" src="<%=path%>/admin1//Js/jquery.sorted.js"></script>
-    <script type="text/javascript" src="<%=path%>/admin1//Js/bootstrap.js"></script>
-    <script type="text/javascript" src="<%=path%>/admin1//Js/ckform.js"></script>
-    <script type="text/javascript" src="<%=path%>/admin1//Js/common.js"></script>
+   <link rel="stylesheet" type="text/css" href="<%=path%>/admin/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<%=path%>/admin/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="<%=path%>/admin/Css/style.css" />
+    <script type="text/javascript" src="<%=path%>/admin/Js/jquery.js"></script>
+    <script type="text/javascript" src="<%=path%>/admin/Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="<%=path%>/admin/Js/bootstrap.js"></script>
+    <script type="text/javascript" src="<%=path%>/admin/Js/ckform.js"></script>
+    <script type="text/javascript" src="<%=path%>/admin/Js/common.js"></script>
     <style type="text/css">
         body {
             padding-top: 40px;
@@ -55,7 +55,7 @@
 <body>
 <div class="container">
 
-    <form class="form-signin" method="post" action="<%=path%>/admin1//index.html">
+    <form class="form-signin" method="post" action="<%=path%>/admin/index.html">
         <h2 class="form-signin-heading">登录系统</h2>
         <input type="text" name="username" class="input-block-level" placeholder="账号">
         <input type="password" name="password" class="input-block-level" placeholder="密码">
