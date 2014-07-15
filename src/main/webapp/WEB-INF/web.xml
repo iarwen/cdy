@@ -78,5 +78,8 @@
 	<welcome-file-list>
 		<welcome-file>/jsp/front/index.jsp</welcome-file>
 	</welcome-file-list>
-
+	<error-page>
+		<error-code>404</error-code>
+		<location>/admin1/login.html</location>
+	</error-page>
 </web-app>
