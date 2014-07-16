@@ -40,6 +40,7 @@
         .form-signin .form-signin-heading,
         .form-signin .checkbox {
             margin-bottom: 10px;
+            text-align: center;
         }
 
         .form-signin input[type="text"],
@@ -55,7 +56,7 @@
 <body>
 <div class="container">
 
-    <form class="form-signin" method="post" action="<%=path%>/admin/index.html">
+    <form class="form-signin" method="post" action="/login/doLogin">
         <h2 class="form-signin-heading">登录系统</h2>
         <input type="text" name="username" class="input-block-level" placeholder="账号">
         <input type="password" name="password" class="input-block-level" placeholder="密码">

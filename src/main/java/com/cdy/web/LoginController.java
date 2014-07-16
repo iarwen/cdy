@@ -45,7 +45,7 @@ public class LoginController extends BaseController {
 	public ModelAndView login(HttpServletRequest request, User user) {
 		User dbUser = userService.getUserByUserName(user.getUserName());
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("forward:/login.jsp");
+		mav.setViewName("redirect:login");
 		if (dbUser == null) {
 			mav.addObject("errorMsg", "用户名不存在");
 		} else if (!dbUser.getPassword().equals(user.getPassword())) {
