@@ -41,11 +41,11 @@ public class LoginController extends BaseController {
      * @param user
      * @return
      */
-	@RequestMapping("/doLogin")
+	@RequestMapping("/login")
 	public ModelAndView login(HttpServletRequest request, User user) {
 		User dbUser = userService.getUserByUserName(user.getUserName());
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:login");
+		mav.setViewName("main");
 		if (dbUser == null) {
 			mav.addObject("errorMsg", "用户名不存在");
 		} else if (!dbUser.getPassword().equals(user.getPassword())) {
@@ -71,7 +71,7 @@ public class LoginController extends BaseController {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping("/doLogout")
+	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute(CommonConstant.USER_CONTEXT);
 		return "forward:/index.jsp";
