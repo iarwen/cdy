@@ -66,6 +66,9 @@ abstract public class BaseDao<T extends BaseDomain>
         return (T) entityManager.find(clz, id);
     }
     
+    public T findByID(Class<T> clz,int id) {
+        return (T) entityManager.find(clz, id);
+    }
     /**
      * 执行带参的HQL查询
      * 
@@ -109,7 +112,7 @@ abstract public class BaseDao<T extends BaseDomain>
      * @return 查询结果
      */
     public List<T> findAll(Class<T> clz,String[] orders ) {
-        StringBuffer hql=new StringBuffer("select p from "+clz.getSimpleName()+" ");
+        StringBuffer hql=new StringBuffer("from "+clz.getSimpleName()+" ");
         
         //orders
         if(orders!=null && orders.length>0){

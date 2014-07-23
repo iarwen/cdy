@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.cdy.dao.UserDao;
 import com.cdy.domain.User;
 import com.cdy.exception.UserExistException;
+import com.cdy.utils.CipherUtil;
 
 /**
  * 用户管理服务器，负责查询用户、注册用户、锁定用户等操作
@@ -20,6 +21,10 @@ public class UserService
     @Autowired
     private UserDao userDao;
 
+    public void remove(String id){
+    	userDao.remove(id);
+	}
+    
     /**
      * 注册一个新用户,如果用户名已经存在此抛出UserExistException的异常
      * 
@@ -35,6 +40,7 @@ public class UserService
         }
         else
         {
+        	user.setPassword(CipherUtil.generatePassword(user.getPassword()));
             user.setCredit(100);
             user.setUserType(1);
             userDao.insert(user);
@@ -82,9 +88,9 @@ public class UserService
      *            锁定目标用户的用户名
      * @throws Exception 
      */
-    public void lockUser(String userName) throws Exception
+    public void lockUser(String id) throws Exception
     {
-        User user = userDao.getUserByUserName(userName);
+    	 User user = userDao.findByID(User.class, Integer.parseInt(id));
         user.setLocked(User.USER_LOCK);
         userDao.update(user);
     }
@@ -96,9 +102,9 @@ public class UserService
      *            解除锁定目标用户的用户名
      * @throws Exception 
      */
-    public void unlockUser(String userName) throws Exception
+    public void unlockUser(String id) throws Exception
     {
-        User user = userDao.getUserByUserName(userName);
+        User user = userDao.findByID(User.class, Integer.parseInt(id));
         user.setLocked(User.USER_UNLOCK);
         userDao.update(user);
     }
@@ -108,7 +114,7 @@ public class UserService
      * 
      * @param userName
      *            查询用户名
-     * @return 所有用户名前导匹配的userName的用户
+     * @return 所有用户名模糊匹配的userName的用户
      */
     public List<User> queryUserByUserName(String userName)
     {
@@ -122,7 +128,7 @@ public class UserService
      */
     public List<User> getAllUsers()
     {
-        return userDao.findAll(User.class,new String[]{"name asc"});
+        return userDao.findAll(User.class,new String[]{"userId asc"});
     }
 
 }

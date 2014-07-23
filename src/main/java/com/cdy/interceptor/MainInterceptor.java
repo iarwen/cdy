@@ -3,34 +3,30 @@ package com.cdy.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
 import com.cdy.cons.CommonConstant;
 import com.cdy.domain.User;
 import com.cdy.exception.NotLoginException;
 
-public class MainInterceptor implements HandlerInterceptor {
-	private String[] allowUrls;
+public class MainInterceptor extends WebContentInterceptor  {
+	private String[] allowUrls={"/login","/logout"};
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request,
-			HttpServletResponse response, Object handler) throws Exception {
+			HttpServletResponse response, Object handler) {
 		String requestUrl=request.getRequestURI();
+		User user=(User)request.getSession().getAttribute(CommonConstant.USER_CONTEXT);
+		if(user!=null)return true;
 		
-		if(null!=allowUrls&&allowUrls.length>0){
-			for(String allowRrl : allowUrls){
-				if(requestUrl.contains(allowRrl)){
-					return true;
-				}
+		for(String allowRrl : allowUrls){
+			if(requestUrl.equals(allowRrl)){
+				return true;
 			}
 		}
-		User user=(User)request.getSession().getAttribute(CommonConstant.USER_CONTEXT);
-		if(user!=null){
-			return true;
-		}else{
-			throw new NotLoginException("not login");
-		}
+		
+		throw new NotLoginException("not login");
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package com.cdy.web;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.util.Assert;
 
@@ -32,7 +34,8 @@ public class BaseController {
 		return (User) request.getSession().getAttribute(
 				CommonConstant.USER_CONTEXT);
 	}
-   
+	
+	
 	/**
 	 * 保存用户对象到Session中
 	 * @param request
