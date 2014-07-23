@@ -21,17 +21,18 @@
 
 	<profiles>
 		<profile>
-			<id>dev</id>
+			<id>dev_mysql</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<build.param>this is dev</build.param>
-				<db.host>172.20.136.23</db.host>
-				<db.port>3306</db.port>
-				<db.dbname>minerdev</db.dbname>
+				<build.param>this is company dev</build.param>
+				<db.dialect>org.hibernate.dialect.MySQL5Dialect</db.dialect>
+				<db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+				<db.url>jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf-8</db.url>
 				<db.username>root</db.username>
 				<db.password>root</db.password>
+				<db.validationQuery>select 1 from dual</db.validationQuery>
 			</properties>
 		</profile>
 	</profiles>
