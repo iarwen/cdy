@@ -66,9 +66,15 @@ abstract public class BaseDao<T extends BaseDomain>
         return (T) entityManager.find(clz, id);
     }
     
+    /**
+     * 根据ID获取PO实例
+     * 
+     * @param id
+     * @return 返回相应的持久化PO实例
+     */
     public T findByID(Class<T> clz,int id) {
         return (T) entityManager.find(clz, id);
-    }
+    }  
     /**
      * 执行带参的HQL查询
      * 
