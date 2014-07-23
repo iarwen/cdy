@@ -8,7 +8,7 @@
 	<packaging>war</packaging>
 
 	<name>CDYSystem</name>
-	<description>SpringMVC+Jpa+servlet3.0最简化快速开发基础</description>
+	<description>SpringMVC+Jpa+Servlet3.0最简化快速开发基础框架</description>
 
 	<properties>
 		<spring.version>4.0.6.RELEASE</spring.version>
