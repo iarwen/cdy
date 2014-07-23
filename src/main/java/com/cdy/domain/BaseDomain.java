@@ -14,7 +14,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  *@see
  *@since
  */
-public class BaseDomain implements Serializable
+public class BaseDomain implements Serializable,Cloneable
 {
     /**
 	 * 
@@ -39,5 +39,11 @@ public class BaseDomain implements Serializable
     public void setId(String id)
     {
         this.id = id;
+    }
+    
+    @Override
+    public Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
     }
 }

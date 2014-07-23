@@ -9,5 +9,5 @@
            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
            http://www.springframework.org/schema/context   
            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
- 
+ 	<!-- 使用main中的配置文件直接进行测试 -->
 </beans>

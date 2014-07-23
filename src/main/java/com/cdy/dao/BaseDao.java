@@ -19,7 +19,7 @@ import com.cdy.domain.BaseDomain;
  */
 abstract public class BaseDao<T extends BaseDomain>
 {
-    @PersistenceContext(unitName = "jpaPU")
+    @PersistenceContext(unitName="jpaPU")
     protected EntityManager entityManager;
 
     @Autowired
