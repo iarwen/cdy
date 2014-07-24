@@ -108,9 +108,9 @@
 	<import resource="classpath*:spring/applicationContext-*.xml" />
 
 	<!-- 配置静态资源，直接映射到对应的文件夹，不被DispatcherServlet处理 -->
-	<mvc:resources mapping="/admin/Images/**" location="/admin/Images/" />
-	<mvc:resources mapping="/admin/Css/**" location="/admin/Css/" />
-	<mvc:resources mapping="/admin/Js/**" location="/admin/Js/" />
-	<mvc:resources mapping="/admin/assets/**" location="/admin/assets/" />
+	<mvc:resources mapping="/admin/images/**" location="/WEB-INF/admin/images/" />
+	<mvc:resources mapping="/admin/css/**" location="/WEB-INF/admin/css/" />
+	<mvc:resources mapping="/admin/js/**" location="/WEB-INF/admin/js/" />
+	<mvc:resources mapping="/admin/assets/**" location="/WEB-INF/admin/assets/" />
 </beans>
 	

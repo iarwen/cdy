@@ -19,7 +19,7 @@ import com.cdy.domain.BaseDomain;
  */
 abstract public class BaseDao<T extends BaseDomain>
 {
-    @PersistenceContext(unitName="jpaPU")
+    @PersistenceContext(unitName = "jpaPU")
     protected EntityManager entityManager;
 
     @Autowired
@@ -65,6 +65,7 @@ abstract public class BaseDao<T extends BaseDomain>
     public T findByID(Class<T> clz,String id) {
         return (T) entityManager.find(clz, id);
     }
+    
     /**
      * 根据ID获取PO实例
      * 
@@ -117,7 +118,7 @@ abstract public class BaseDao<T extends BaseDomain>
      * @return 查询结果
      */
     public List<T> findAll(Class<T> clz,String[] orders ) {
-        StringBuffer hql=new StringBuffer("select p from "+clz.getSimpleName()+" ");
+        StringBuffer hql=new StringBuffer("from "+clz.getSimpleName()+" ");
         
         //orders
         if(orders!=null && orders.length>0){

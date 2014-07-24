@@ -13,6 +13,10 @@ public class UserDao extends BaseDao<User> {
 	
 	private final String QUERY_USER_BY_USERNAME = "from User u where u.userName like ?";
 	
+	public void remove(String id){
+		User  u = this.findByID(User.class, Integer.parseInt(id));
+		this.remove(u);
+	}
     /**
      * 根据用户名查询User对象
      * @param userName 用户名
@@ -30,10 +34,10 @@ public class UserDao extends BaseDao<User> {
 	/**
 	 * 根据用户名为模糊查询条件，查询出所有前缀匹配的User对象
 	 * @param userName 用户名查询条件
-	 * @return 用户名前缀匹配的所有User对象
+	 * @return 用户名模糊匹配的所有User对象
 	 */
 	public List<User> queryUserByUserName(String userName){
-	    return this.find(User.class, QUERY_USER_BY_USERNAME, 0, 0, null, "%"+userName+"%");
+	    return this.find(User.class, QUERY_USER_BY_USERNAME, 0, 0, new String[]{"userId"}, "%"+userName+"%");
 	}
 
 }

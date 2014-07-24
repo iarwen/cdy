@@ -16,7 +16,7 @@
 	<!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/admin/" p:suffix=".jsp" />
+		p:prefix="/WEB-INF/admin/" p:suffix=".jsp" />
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 		p:defaultEncoding="utf-8" />
@@ -31,21 +31,7 @@
 		</property>
 	</bean>
 	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean class="com.cdy.interceptor.MainInterceptor">
-				<property name="allowUrls">
-					<list>
-						<value>/index.jsp</value>
-						<value>/login</value>
-						<value>/Css/</value>
-						<value>/Js/</value>
-						<value>/Images/</value>
-						<value>/assets/</value>
-						<value>/front/</value>
-					</list>
-				</property>
-			</bean>
-		</mvc:interceptor>
+		<bean class="com.cdy.interceptor.MainInterceptor">
+		</bean>
 	</mvc:interceptors>
 </beans>
