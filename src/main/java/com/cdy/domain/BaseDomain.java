@@ -6,18 +6,21 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
-import org.springframework.beans.factory.InitializingBean;
 
 /**
  * 
- *<br><b>类描述:</b>
- *<pre>所有PO的父类</pre>
- *@see
- *@since
+ * <br>
+ * <b>类描述:</b>
+ *
+ * <pre>
+ * 所有PO的父类
+ * </pre>
+ *
+ * @see
+ * @since
  */
-public class BaseDomain implements Serializable,Cloneable,InitializingBean 
-{
-    /**
+public class BaseDomain implements Serializable, Cloneable {
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4790880892674195147L;
@@ -25,31 +28,22 @@ public class BaseDomain implements Serializable,Cloneable,InitializingBean
 	@Column
 	@Id
 	private String id;
-	
-	
-	
+
 	public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
+		return ToStringBuilder.reflectionToString(this);
+	}
 
-    public String getId()
-    {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id)
-    {
-        this.id = id;
-    }
-    
-    @Override
-    public Object clone() throws CloneNotSupportedException
-    {
-        return super.clone();
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {
-		System.out.println("bean init");
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
+
 }

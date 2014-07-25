@@ -86,7 +86,8 @@ public class UserController extends BaseController {
 	
 	@RequestMapping(value = "/delete", method = {RequestMethod.POST })
 	@ResponseBody
-	public void delete( User[] users){
+	public void delete(HttpServletRequest req){
+		req.getParameter("");
 		System.out.println("d");
 //		for(String id:ids){
 //			userService.remove(id);

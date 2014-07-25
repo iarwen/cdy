@@ -40,8 +40,7 @@ public class User extends BaseDomain {
      * 普通用户类型
      */
     public static final int NORMAL_USER = 1;
-    public User() {
-	}
+
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
