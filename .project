@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>cdy</name>
-	<comment>SpringMVC+Jpa+servlet3.0最简化快速开发基础. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+	<comment>SpringMVC+Jpa+servlet3.0最简化快速开发基础.</comment>
 	<projects>
 	</projects>
 	<buildSpec>
