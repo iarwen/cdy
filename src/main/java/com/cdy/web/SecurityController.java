@@ -35,7 +35,7 @@ public class SecurityController extends BaseController {
 			return new ModelAndView("main");
 		}
 		String verify = request.getParameter("verify");
-		String toUrl="redirect:/index.jsp";
+		String toUrl="index.jsp";
 		ModelAndView mav = new ModelAndView();
 		if(verifyok(request,verify)){
 		//if(!verifyok(request,verify)){

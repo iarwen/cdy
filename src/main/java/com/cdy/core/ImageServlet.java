@@ -45,26 +45,26 @@ public class ImageServlet extends HttpServlet {
 		graphics.fillRect(0, 0, width, height);
 		Random random = new Random();
 		for (int i = 0; i < 10; i++) {
-			int x1 = random.nextInt(width);
-			int x2 = random.nextInt(width);
-			int y1 = random.nextInt(height);
-			int y2 = random.nextInt(height);
-			graphics.setColor(Color.RED);
-			graphics.drawLine(x1, y1, x2, y2);
+			//int x1 = random.nextInt(width);
+			//int x2 = random.nextInt(width);
+			//int y1 = random.nextInt(height);
+			//int y2 = random.nextInt(height);
+			//graphics.setColor(Color.RED);
+			//graphics.drawLine(x1, y1, x2, y2);
 		}
 		int inta = random.nextInt(disaply.length);
 		int intb = random.nextInt(disaply.length);
 		int intc = random.nextInt(disaply.length);
 		int intd = random.nextInt(disaply.length);
-		String disaplystr = disaply[inta] + "" + disaply[intb] + ""
-				+ disaply[intc] + "" + disaply[intd] + "";
+		String disaplystr = disaply[inta] + " " + disaply[intb] + " "
+				+ disaply[intc] + " " + disaply[intd] + "";
 		HttpSession session = request.getSession();
 		session.setAttribute("cver_code", disaplystr);
-		graphics.setColor(Color.BLUE);
-		graphics.setFont(new Font("Arial", Font.BOLD, 20));
-		graphics.drawString(disaplystr, 20, 20);
+		graphics.setColor(Color.LIGHT_GRAY);
+		graphics.setFont(new Font("Arial", Font.PLAIN, 25));
+		graphics.drawString(disaplystr, 10, 20);
 		OutputStream output = response.getOutputStream();
-		ImageIO.write(image, "jpg", output);
+		ImageIO.write(image, "png", output);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

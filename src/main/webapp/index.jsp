@@ -76,9 +76,7 @@
             margin-bottom: 15px;
             padding: 7px 9px;
         }
-		.form-signin img{
-			margin-bottom: 15px
-		}
+		
 		.errmsg{
 			padding-left: 50px;
 			color: red;
@@ -98,8 +96,8 @@
 	     <input type="text"  id="number" name="verify" class="input-medium col-xm-6" placeholder="验证码" value="${verify }">
 	     
 	     <img id="coding" alt="user code"   class="col-xm-3" src="/servlet/imageServlet" />
-		 <a href="javascript:showing()"  class="col-xm-3" > 换一张 </a>
-		 <div class="row errmsg" >&nbsp;<%=request.getParameter("errorMsg")==null?"":request.getParameter("errorMsg") %></div>
+		 <a href="javascript:showing()"  class="col-xm-3" > 看不清,换一张 </a>
+		 <div class="row errmsg" >&nbsp;${errorMsg}</div>
         <p><button class="btn btn-large btn-primary" type="submit">登录</button></p>
     </form>
 
