@@ -27,3 +27,8 @@ function U() {
 
     return _APP_+'?'+arr.join('&');
 }
+$(function(){
+	$("tbody").find("tr").bind("click",function(){
+		$(this).toggleClass("tableRowSelected");
+	});
+});

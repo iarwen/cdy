@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cdy.domain.User;
@@ -82,12 +83,17 @@ public class UserController extends BaseController {
 		view.setViewName("basedata/user/add");
 		return view;
 	}
-	@RequestMapping(value = "/delete/{id}")
-	public ModelAndView delete(@PathVariable("id") String id){
-		userService.remove(id);
-		ModelAndView view = new ModelAndView();
-		view.setViewName("redirect:/user/index");
-		return view;
+	
+	@RequestMapping(value = "/delete", method = {RequestMethod.POST })
+	@ResponseBody
+	public void delete( User[] users){
+		System.out.println("d");
+//		for(String id:ids){
+//			userService.remove(id);
+//		}
+//		ModelAndView view = new ModelAndView();
+//		view.setViewName("redirect:/user/index");
+//		return view;
 	}
 	@RequestMapping(value = "/enable/{id}")
 	public ModelAndView enable(@PathVariable("id") String id){

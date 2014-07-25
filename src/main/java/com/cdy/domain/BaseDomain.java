@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.springframework.beans.factory.InitializingBean;
 
 /**
  * 
@@ -14,7 +15,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  *@see
  *@since
  */
-public class BaseDomain implements Serializable,Cloneable
+public class BaseDomain implements Serializable,Cloneable,InitializingBean 
 {
     /**
 	 * 
@@ -46,4 +47,9 @@ public class BaseDomain implements Serializable,Cloneable
     {
         return super.clone();
     }
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("bean init");
+	}
 }
