@@ -15,6 +15,7 @@ public class UserDao extends BaseDao<User> {
 	
 	public void remove(String id){
 		User  u = this.findByID(User.class, Integer.parseInt(id));
+		if(u==null) return;
 		this.remove(u);
 	}
     /**

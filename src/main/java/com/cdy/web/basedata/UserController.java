@@ -1,9 +1,11 @@
 
 package com.cdy.web.basedata;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -86,15 +89,11 @@ public class UserController extends BaseController {
 	
 	@RequestMapping(value = "/delete", method = {RequestMethod.POST })
 	@ResponseBody
-	public void delete(HttpServletRequest req){
-		req.getParameter("");
-		System.out.println("d");
-//		for(String id:ids){
-//			userService.remove(id);
-//		}
-//		ModelAndView view = new ModelAndView();
-//		view.setViewName("redirect:/user/index");
-//		return view;
+	public void delete(HttpServletResponse res, @RequestParam(value = "uids[]") String[] uids) throws IOException{
+		for(String id:uids){
+			userService.remove(id);
+		}
+		ajaxDoneSuccess(res,"删除成功");
 	}
 	@RequestMapping(value = "/enable/{id}")
 	public ModelAndView enable(@PathVariable("id") String id){

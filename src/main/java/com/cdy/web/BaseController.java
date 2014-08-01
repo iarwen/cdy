@@ -1,11 +1,14 @@
 package com.cdy.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.util.Assert;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cdy.cons.CommonConstant;
 import com.cdy.domain.User;
 
@@ -22,7 +25,8 @@ import com.cdy.domain.User;
  * @since
  */
 public class BaseController {
-	protected static final String ERROR_MSG_KEY = "errorMsg";
+	protected static final String MSG_KEY = "msg";
+	protected static final String STATUS_CODE_KEY = "statusCode";
 
 	/**
 	 * 获取保存在Session中的用户对象
@@ -34,18 +38,59 @@ public class BaseController {
 		return (User) request.getSession().getAttribute(
 				CommonConstant.USER_CONTEXT);
 	}
-	
-	
+
+	/**
+	 * 将json对象写回到响应流中
+	 * 
+	 * @param json
+	 * @return
+	 */
+	protected void writeJson(HttpServletResponse response, JSONObject json)
+			throws IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println(json.toString());
+		out.flush();
+		out.close();
+	}
+
+	/**
+	 * 将json对象写回到响应流中
+	 * 
+	 * @param json
+	 * @return
+	 */
+	protected void ajaxDoneSuccess(HttpServletResponse response, String msg)
+			throws IOException {
+		writeBackAjax(response, "2000", msg);
+	}
+
+	protected void ajaxDoneError(HttpServletResponse response, String msg)
+			throws IOException {
+		writeBackAjax(response, "5000", msg);
+	}
+
+	private void writeBackAjax(HttpServletResponse response, String code,
+			String msg) throws IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		JSONObject json = new JSONObject();
+		json.put(STATUS_CODE_KEY, code);
+		json.put(MSG_KEY, msg);
+		out.println(json.toString());
+		out.flush();
+		out.close();
+	}
+
 	/**
 	 * 保存用户对象到Session中
+	 * 
 	 * @param request
 	 * @param user
 	 */
-	protected void setSessionUser(HttpServletRequest request,User user) {
-		request.getSession().setAttribute(CommonConstant.USER_CONTEXT,
-				user);
+	protected void setSessionUser(HttpServletRequest request, User user) {
+		request.getSession().setAttribute(CommonConstant.USER_CONTEXT, user);
 	}
-	
 
 	/**
 	 * 获取基于应用程序的url绝对路径
@@ -60,6 +105,5 @@ public class BaseController {
 		Assert.isTrue(url.startsWith("/"), "必须以/打头");
 		return request.getContextPath() + url;
 	}
-	
-	
+
 }

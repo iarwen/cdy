@@ -17,6 +17,7 @@
 	href="<%=path%>/admin/css/style.css?v=<%=System.currentTimeMillis()%>" />
 <script type="text/javascript" src="<%=path%>/admin/js/jquery.js"></script>
 <script type="text/javascript" src="<%=path%>/admin/js/jquery.sorted.js"></script>
+<script type="text/javascript" src="<%=path%>/admin/js/jquery.msgbox.js?v=8"></script>
 <script type="text/javascript"
 	src="<%=path%>/admin/js/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<%=path%>/admin/js/ckform.js"></script>
@@ -98,6 +99,7 @@ hr {
 			</div>
 		</div>
 	</div>
+	<div id="msgbox"></div>
 	<script type="text/javascript">
 		$(function() {
 			$('#addnew').click(function() {
@@ -107,23 +109,35 @@ hr {
 
 		function del() {
 			if (confirm("确定要删除吗？")) {
-				var uids = [];
+				var uids = {"uids":[]};
 				$(".tableRowSelected").each(function() {
-					var user=new Object();
-					user.userId=$(this).attr("uid");
-					uids.push(user);
+					/* var user=new Object();
+					user. userId=$(this).attr("uid");*/
+					uids.uids.push($(this).attr("uid"));
 				});
 				$.ajax({
 					   type: "POST",
 					   url:"delete",
 					   dataType:"json",      
-					   contentType:"application/json",   
-					   data: JSON.stringify(uids) ,
+					   data:uids,
 					   success: function(data){
-						   if(data.isSuccess){
-								reloadData();
+						   if(data.statusCode==2000){
+								//reloadData();
+								$("#msgbox").jconfirm(data.msg,null,{
+								    title : '消息', 
+								    width : 400, 
+								    height : 300, 
+								    //maskcolor : 'lightgrey',
+								    maskopacity : 0.9
+								});
 							}else{
-								alert(data.msg);
+								$("#msgbox").jconfirm(data.msg,null,{
+								    title : '消息', 
+								    width : 400, 
+								    height : 300, 
+								    maskcolor : 'lightgrey',
+								    maskopacity : 0.9
+								});
 							}
 					   }
 					});
