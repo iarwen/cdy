@@ -38,7 +38,6 @@ public class SecurityController extends BaseController {
 		String toUrl="index.jsp";
 		ModelAndView mav = new ModelAndView();
 		if(verifyok(request,verify)){
-		//if(!verifyok(request,verify)){
 			mav.addObject("errorMsg", "验证码不正确");
 			mav.setViewName(toUrl);
 			return mav;
