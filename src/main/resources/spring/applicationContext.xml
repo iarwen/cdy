@@ -69,12 +69,10 @@
 	</bean>
 	<!-- <tx:annotation-driven transaction-manager="txManager" /> -->
 	<aop:config>
-		<aop:pointcut id="serviceOperator"
-			expression="execution(public * com.cdy.service..*.*(..))" />
-		<aop:pointcut id="daoOperator"
-			expression="execution(public * com.cdy.dao..*.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperator" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="daoOperator" />
+		<aop:pointcut id="serviceOperator"		expression="execution(public * com.cdy.service..*.*(..))" />
+		<aop:pointcut id="daoOperator"			expression="execution(public * com.cdy.dao..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" 		pointcut-ref="serviceOperator" />
+		<aop:advisor advice-ref="txAdvice" 		pointcut-ref="daoOperator" />
 	</aop:config>
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
