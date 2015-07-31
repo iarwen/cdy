@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdy.dao.UserDao;
-import com.cdy.domain.User;
+import com.cdy.domain.UserEntity;
 import com.cdy.exception.UserExistException;
 import com.cdy.utils.CipherUtil;
 
@@ -21,7 +21,7 @@ public class UserService
     @Autowired
     private UserDao userDao;
 
-    public void remove(String id){
+    public void remove(long id){
     	userDao.remove(id);
 	}
     
@@ -31,9 +31,9 @@ public class UserService
      * @param user
      * @throws Exception
      */
-    public void register(User user) throws Exception
+    public void register(UserEntity user) throws Exception
     {
-        User u = this.getUserByUserName(user.getUserName());
+        UserEntity u = this.getUserByUserName(user.getUserName());
         if (u != null)
         {
             throw new UserExistException("用户名已经存在");
@@ -41,7 +41,6 @@ public class UserService
         else
         {
         	user.setPassword(CipherUtil.generatePassword(user.getPassword()));
-            user.setCredit(100);
             user.setUserType(1);
             userDao.insert(user);
         }
@@ -53,7 +52,7 @@ public class UserService
      * @param user
      * @throws Exception
      */
-    public void update(User user) throws Exception
+    public void update(UserEntity user) throws Exception
     {
         userDao.update(user);
     }
@@ -63,11 +62,11 @@ public class UserService
      * 
      * @param userName
      *            用户名
-     * @return User
+     * @return UserEntity
      */
-    public User getUserByUserName(String userName)
+    public UserEntity getUserByUserName(String userName)
     {
-        return userDao.getUserByUserName(userName);
+        return null;//userDao.getUserByUserName(userName);
     }
 
     /**
@@ -76,9 +75,9 @@ public class UserService
      * @param userId
      * @return
      */
-    public User getUserById(String userId)
+    public UserEntity getUserById(String userId)
     {
-        return userDao.findByID(User.class, userId);
+        return null;//userDao.findByID(UserEntity.class, userId);
     }
 
     /**
@@ -90,9 +89,9 @@ public class UserService
      */
     public void lockUser(String id) throws Exception
     {
-    	 User user = userDao.findByID(User.class, Integer.parseInt(id));
-        user.setLocked(User.USER_LOCK);
-        userDao.update(user);
+//    	  UserEntity user =  null;//userDao.findByID(UserEntity.class, Integer.parseInt(id));
+//        user.setLocked(UserEntity.USER_LOCK);
+//        userDao.update(user);
     }
 
     /**
@@ -104,8 +103,8 @@ public class UserService
      */
     public void unlockUser(String id) throws Exception
     {
-        User user = userDao.findByID(User.class, Integer.parseInt(id));
-        user.setLocked(User.USER_UNLOCK);
+        UserEntity user = userDao.findByID(Integer.parseInt(id));
+        user.setLocked(UserEntity.USER_UNLOCK);
         userDao.update(user);
     }
 
@@ -116,9 +115,9 @@ public class UserService
      *            查询用户名
      * @return 所有用户名模糊匹配的userName的用户
      */
-    public List<User> queryUserByUserName(String userName)
+    public List<UserEntity> queryUsersByUserName(String userName)
     {
-        return userDao.queryUserByUserName(userName);
+        return null;//userDao.queryUserByUserName(userName);
     }
 
     /**
@@ -126,9 +125,9 @@ public class UserService
      * 
      * @return 所有用户
      */
-    public List<User> getAllUsers()
+    public List<UserEntity> getAllUsers()
     {
-        return userDao.findAll(User.class,new String[]{"userId asc"});
+        return null;//userDao.findAll(UserEntity.class,new String[]{"userId asc"});
     }
 
 }

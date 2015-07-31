@@ -1,8 +1,8 @@
 package com.cdy.dao;
-import com.cdy.domain.User;
+import com.cdy.domain.UserEntity;
 /**
  * User对象Dao
  */
-public interface UserDao extends BaseDao<User> {
+public interface UserDao extends BaseDao<UserEntity> {
   
 }

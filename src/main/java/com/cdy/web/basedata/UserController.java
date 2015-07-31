@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cdy.domain.User;
+import com.cdy.domain.UserEntity;
 import com.cdy.exception.UserExistException;
 import com.cdy.service.UserService;
 import com.cdy.web.BaseController;
@@ -50,7 +50,7 @@ public class UserController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(HttpServletRequest request,User user){
+	public ModelAndView save(HttpServletRequest request,UserEntity user){
 		ModelAndView view = new ModelAndView();
 		view.setViewName("redirect:index");
 		try {
@@ -67,14 +67,14 @@ public class UserController extends BaseController {
 		return view;
 	}
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public ModelAndView index(HttpServletRequest request,User user){
+	public ModelAndView index(HttpServletRequest request,UserEntity user){
 		ModelAndView view = new ModelAndView();
-		List<User> userlist=null;
+		List<UserEntity> userlist=null;
 		if(StringUtils.isEmpty( user.getUserName())){
 			userlist =	userService.getAllUsers();
 		}
 		else{
-			userlist=userService.queryUserByUserName(user.getUserName());
+			userlist=userService.queryUsersByUserName( user.getUserName());
 		}
 		view.setViewName("basedata/user/index");
 		view.addObject("userlist", userlist);
@@ -89,8 +89,8 @@ public class UserController extends BaseController {
 	
 	@RequestMapping(value = "/delete", method = {RequestMethod.POST })
 	@ResponseBody
-	public void delete(HttpServletResponse res, @RequestParam(value = "uids[]") String[] uids) throws IOException{
-		for(String id:uids){
+	public void delete(HttpServletResponse res, @RequestParam(value = "uids[]") Long[] uids) throws IOException{
+		for(long id:uids){
 			userService.remove(id);
 		}
 		ajaxDoneSuccess(res,"删除成功");
@@ -117,5 +117,4 @@ public class UserController extends BaseController {
 		view.setViewName("redirect:/user/index");
 		return view;
 	}
-	
 }

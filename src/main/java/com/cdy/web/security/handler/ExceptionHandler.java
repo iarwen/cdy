@@ -35,7 +35,6 @@ public class ExceptionHandler extends SimpleMappingExceptionResolver  {
                     e.printStackTrace();  
                 }  
                 return null;  
-  
             }  
         } else {  
             return null;  

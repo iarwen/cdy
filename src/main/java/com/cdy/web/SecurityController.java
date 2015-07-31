@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cdy.cons.CommonConstant;
-import com.cdy.domain.User;
+import com.cdy.domain.UserEntity;
 import com.cdy.service.UserService;
 import com.cdy.utils.CipherUtil;
 
@@ -29,9 +29,9 @@ public class SecurityController extends BaseController {
      * @return
      */
 	@RequestMapping("/login")
-	public ModelAndView login(HttpServletRequest request,User user) {
+	public ModelAndView login(HttpServletRequest request,UserEntity user) {
 		//刷新主页
-		if(request.getSession().getAttribute(CommonConstant.USER_CONTEXT)!=null){
+		if(request.getSession().getAttribute(CommonConstant.USER_ENTITY)!=null){
 			return new ModelAndView("main");
 		}
 		String verify = request.getParameter("verify");
@@ -43,13 +43,13 @@ public class SecurityController extends BaseController {
 			return mav;
 		} 
 		
-		User dbUser=userService.getUserByUserName(user.getUserName());
+		UserEntity dbUser=userService.getUserByUserName(user.getUserName());
 		
 		if (dbUser == null) {
 			mav.addObject("errorMsg", "用户名不存在");
 		} else if (!CipherUtil.validatePassword(dbUser.getPassword(), user.getPassword()) ) {
 			mav.addObject("errorMsg", "密码不正确");
-		} else if (dbUser.getLocked() == User.USER_LOCK) {
+		} else if (dbUser.getLocked() == UserEntity.USER_LOCK) {
 			mav.addObject("errorMsg", "用户已经被锁定，不能登录。");
 		} else {
 			toUrl="main";
@@ -69,7 +69,7 @@ public class SecurityController extends BaseController {
 	 */
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute(CommonConstant.USER_CONTEXT);
+		session.removeAttribute(CommonConstant.USER_ENTITY);
 		return "forward:/index.jsp";
 	}
 

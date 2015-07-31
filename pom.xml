@@ -81,6 +81,11 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatisspring.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>4.0.0</version>
+		</dependency>
 		<!-- dbcp连接池 -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>

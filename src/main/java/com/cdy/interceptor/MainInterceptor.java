@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
 import com.cdy.cons.CommonConstant;
-import com.cdy.domain.User;
+import com.cdy.domain.UserEntity;
 import com.cdy.exception.NotLoginException;
 
 public class MainInterceptor extends WebContentInterceptor  {
@@ -17,7 +17,7 @@ public class MainInterceptor extends WebContentInterceptor  {
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) {
 		String requestUrl=request.getRequestURI();
-		User user=(User)request.getSession().getAttribute(CommonConstant.USER_CONTEXT);
+		UserEntity user=(UserEntity)request.getSession().getAttribute(CommonConstant.USER_ENTITY);
 		if(user!=null)return true;
 		
 		for(String allowRrl : allowUrls){

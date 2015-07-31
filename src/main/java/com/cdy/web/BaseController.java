@@ -10,20 +10,8 @@ import org.springframework.util.Assert;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cdy.cons.CommonConstant;
-import com.cdy.domain.User;
+import com.cdy.domain.UserEntity;
 
-/**
- * 
- * <br>
- * <b>类描述:</b>
- * 
- * <pre>
- * 所有Controller的基类
- * </pre>
- * 
- * @see
- * @since
- */
 public class BaseController {
 	protected static final String MSG_KEY = "msg";
 	protected static final String STATUS_CODE_KEY = "statusCode";
@@ -34,9 +22,9 @@ public class BaseController {
 	 * @param request
 	 * @return
 	 */
-	protected User getSessionUser(HttpServletRequest request) {
-		return (User) request.getSession().getAttribute(
-				CommonConstant.USER_CONTEXT);
+	protected UserEntity getSessionUser(HttpServletRequest request) {
+		return (UserEntity) request.getSession().getAttribute(
+				CommonConstant.USER_ENTITY);
 	}
 
 	/**
@@ -88,8 +76,8 @@ public class BaseController {
 	 * @param request
 	 * @param user
 	 */
-	protected void setSessionUser(HttpServletRequest request, User user) {
-		request.getSession().setAttribute(CommonConstant.USER_CONTEXT, user);
+	protected void setSessionUser(HttpServletRequest request, UserEntity user) {
+		request.getSession().setAttribute(CommonConstant.USER_ENTITY, user);
 	}
 
 	/**
@@ -102,7 +90,7 @@ public class BaseController {
 	 */
 	public final String getAppbaseUrl(HttpServletRequest request, String url) {
 		Assert.hasLength(url, "url不能为空");
-		Assert.isTrue(url.startsWith("/"), "必须以/打头");
+		Assert.isTrue(url.startsWith("/"), "URL必须以/开头");
 		return request.getContextPath() + url;
 	}
 
