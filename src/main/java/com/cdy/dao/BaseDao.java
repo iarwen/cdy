@@ -89,8 +89,9 @@ abstract public class BaseDao<T extends BaseDomain>
         if(orders!=null && orders.length>0){
             sb.append(" order by ");
             for(String order : orders){
-                sb.append(order).append(" ");
+                sb.append(order).append(",");
             }
+            sb.setLength(sb.length()-1);
         }
         
         TypedQuery<T> tq= entityManager.createQuery(sb.toString(), clz);
