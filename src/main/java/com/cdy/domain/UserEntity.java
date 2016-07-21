@@ -1,6 +1,5 @@
 package com.cdy.domain;
 
-
 public class UserEntity extends BaseDomain {
 	/**
 	 * 序列化
