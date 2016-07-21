@@ -8,10 +8,10 @@
 	<packaging>war</packaging>
 
 	<name>CDYSystem</name>
-	<description>SpringMVC+Mybatis+Servlet3.0最简化快速开发基础框架</description>
+	<description>SpringMVC+JPA+Servlet3.0最简化快速开发基础框架</description>
 
 	<properties>
-		<spring.version>4.0.6.RELEASE</spring.version>
+		<spring.version>4.1.6.RELEASE</spring.version>
 		<slf4j.version>1.6.1</slf4j.version>
 		<commonsdbcp.version>1.4</commonsdbcp.version>
 		<mybatis.version>3.1.1</mybatis.version>
@@ -135,7 +135,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.13</version>
+			<version>5.1.38</version>
 			<scope>runtime</scope>
 		</dependency>
 		<!-- servlet3.0 -->

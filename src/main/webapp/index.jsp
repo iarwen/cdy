@@ -8,7 +8,7 @@
 <head>
     <title>后台管理系统</title>
 	<meta charset="UTF-8">
-   <link rel="stylesheet" type="text/css" href="<%=path%>/admin/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="<%=path%>/admin/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="<%=path%>/admin/css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="<%=path%>/admin/css/style.css" />
     <script type="text/javascript" src="<%=path%>/admin/js/jquery.js"></script>
