@@ -24,10 +24,7 @@ public class Board extends BaseDomain {
      */
     private static final long serialVersionUID = -632201949017620565L;
 
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "board_id")
-	private int boardId;
+
 
 	@Column(name = "board_name")
 	private String boardName;
@@ -55,14 +52,6 @@ public class Board extends BaseDomain {
 
 	public void setBoardDesc(String boardDesc) {
 		this.boardDesc = boardDesc;
-	}
-
-	public int getBoardId() {
-		return boardId;
-	}
-
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
 	}
 
 	public String getBoardName() {

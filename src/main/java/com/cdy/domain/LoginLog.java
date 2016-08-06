@@ -1,15 +1,7 @@
 package com.cdy.domain;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -22,10 +14,6 @@ public class LoginLog extends BaseDomain {
      */
     private static final long serialVersionUID = -5387540448796975006L;
 
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "login_log_id")
-	private int loginLogId;
 	
 	@Column(name = "login_datetime")
 	private Date loginDate;
@@ -33,16 +21,10 @@ public class LoginLog extends BaseDomain {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
     private User user;
-	
+
+	@Column(name = "ip")
 	private String ip;
-	
-	
-	public int getLoginLogId() {
-		return loginLogId;
-	}
-	public void setLoginLogId(int loginLogId) {
-		this.loginLogId = loginLogId;
-	}
+
 	
 	public String getIp() {
 		return ip;

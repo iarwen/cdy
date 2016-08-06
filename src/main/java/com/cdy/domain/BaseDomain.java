@@ -1,11 +1,9 @@
 package com.cdy.domain;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Id;
-
 import org.apache.commons.lang.builder.ToStringBuilder;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * 
@@ -17,9 +15,9 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  * </pre>
  *
  * @see
- * @since
  */
-public class BaseDomain implements Serializable, Cloneable {
+@MappedSuperclass
+public abstract class BaseDomain implements Serializable, Cloneable {
 	/**
 	 * 
 	 */
@@ -27,17 +25,18 @@ public class BaseDomain implements Serializable, Cloneable {
 
 	@Column
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

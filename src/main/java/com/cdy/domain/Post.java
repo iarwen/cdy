@@ -1,21 +1,7 @@
 package com.cdy.domain;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -24,86 +10,74 @@ import javax.persistence.Table;
 @DiscriminatorColumn(name = "post_type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("1")
 public class Post extends BaseDomain {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "post_id")
-	private int postId;
 
-	@Column(name = "post_title")
-	private String postTitle;
 
-	@Column(name = "post_text")
-	private String postText;
+    @Column(name = "post_title")
+    private String postTitle;
 
-	@Column(name = "board_id")
-	private int boardId;
+    @Column(name = "post_text")
+    private String postText;
 
-	@Column(name = "create_time")
-	private Date createTime;
+    @Column(name = "board_id")
+    private int boardId;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
-	
-    @ManyToOne( cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
-    @JoinColumn(name="topic_id")
-	private Topic topic;
+    @Column(name = "create_time")
+    private Date createTime;
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "topic_id")
+    private Topic topic;
 
-	public int getBoardId() {
-		return boardId;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public int getPostId() {
-		return postId;
-	}
+    public int getBoardId() {
+        return boardId;
+    }
 
-	public void setPostId(int postId) {
-		this.postId = postId;
-	}
+    public void setBoardId(int boardId) {
+        this.boardId = boardId;
+    }
 
-	public String getPostText() {
-		return postText;
-	}
+    public String getPostText() {
+        return postText;
+    }
 
-	public void setPostText(String postText) {
-		this.postText = postText;
-	}
+    public void setPostText(String postText) {
+        this.postText = postText;
+    }
 
-	public String getPostTitle() {
-		return postTitle;
-	}
+    public String getPostTitle() {
+        return postTitle;
+    }
 
-	public void setPostTitle(String postTitle) {
-		this.postTitle = postTitle;
-	}
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
+    }
 
-	public Topic getTopic() {
-		return topic;
-	}
+    public Topic getTopic() {
+        return topic;
+    }
 
-	public void setTopic(Topic topic) {
-		this.topic = topic;
-	}
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 }
