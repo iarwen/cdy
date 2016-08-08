@@ -13,7 +13,7 @@ import java.util.List;
 public class UserDao extends BaseDao<User> {
 
 
-    private final String GET_USER_BY_USERNAME = "from User u where u.userName = ?";
+    private final String GET_USER_BY_USERNAME = "from User u where u.userName = :userName";
 
     private final String QUERY_USER_BY_USERNAME = "from User u where u.userName like ?";
 

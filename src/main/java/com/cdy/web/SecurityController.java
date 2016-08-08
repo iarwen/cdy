@@ -1,17 +1,16 @@
 package com.cdy.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import com.cdy.cons.CommonConstant;
+import com.cdy.domain.User;
+import com.cdy.service.UserService;
+import com.cdy.utils.CipherUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cdy.cons.CommonConstant;
-import com.cdy.domain.User;
-import com.cdy.service.UserService;
-import com.cdy.utils.CipherUtil;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/")
@@ -37,7 +36,7 @@ public class SecurityController extends BaseController {
 		String verify = request.getParameter("verify");
 		String toUrl="index.jsp";
 		ModelAndView mav = new ModelAndView();
-		if(verifyok(request,verify)){
+		if(!verifyok(request,verify)){
 			mav.addObject("errorMsg", "验证码不正确");
 			mav.setViewName(toUrl);
 			return mav;

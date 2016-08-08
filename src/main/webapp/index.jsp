@@ -18,7 +18,7 @@
     <script type="text/javascript" src="<%=path%>/admin/js/common.js"></script>
     <script type="text/javascript">
 	function showing() {
-		var url = '/servlet/imageServlet?time=' + Math.random();
+		var url =  '<%=path%>/servlet/imageServlet?time=' + Math.random();
 		document.getElementById("coding").src = url;
 	}
 	function valid() {
@@ -86,7 +86,7 @@
 <body>
 <div class="container">
 
-    <form class="form-signin" method="post"  onsubmit=" return  valid()" action="/login">
+    <form class="form-signin" method="post"  onsubmit=" return  valid()" action="<%=path%>/login">
         <h2 class="form-signin-heading">登录系统</h2>
         
         <input type="text"  id ="loginId" name="userName" class="input-block-level" placeholder="账号" value="${user.userName }">
@@ -95,9 +95,9 @@
        
 	     <input type="text"  id="number" name="verify" class="input-medium col-xm-6" placeholder="验证码" value="${verify }">
 	     
-	     <img id="coding" alt="user code"   class="col-xm-3" src="/servlet/imageServlet" />
+	     <img id="coding" alt="user code"   class="col-xm-3" src="<%=path%>/servlet/imageServlet" />
 		 <a href="javascript:showing()"  class="col-xm-3" > 看不清,换一张 </a>
-		 <div class="row errmsg" >&nbsp;${errorMsg}</div>
+		 <div class="row errmsg" >${errorMsg}</div>
         <p><button class="btn btn-large btn-primary" type="submit">登录</button></p>
     </form>
 

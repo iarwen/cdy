@@ -1,14 +1,13 @@
 package com.cdy.interceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.WebContentInterceptor;
-
 import com.cdy.cons.CommonConstant;
 import com.cdy.domain.User;
 import com.cdy.exception.NotLoginException;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.WebContentInterceptor;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class MainInterceptor extends WebContentInterceptor  {
 	private String[] allowUrls={"/login","/logout"};
@@ -21,7 +20,7 @@ public class MainInterceptor extends WebContentInterceptor  {
 		if(user!=null)return true;
 		
 		for(String allowRrl : allowUrls){
-			if(requestUrl.equals(allowRrl)){
+			if(requestUrl.endsWith(allowRrl)){
 				return true;
 			}
 		}

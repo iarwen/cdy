@@ -53,8 +53,8 @@ public class ImageServlet extends HttpServlet {
         int intb = random.nextInt(disaply.length);
         int intc = random.nextInt(disaply.length);
         int intd = random.nextInt(disaply.length);
-        String disaplystr = disaply[inta] + " " + disaply[intb] + " "
-                + disaply[intc] + " " + disaply[intd] + "";
+        String disaplystr = disaply[inta] + "" + disaply[intb] + ""
+                + disaply[intc] + "" + disaply[intd] + "";
 
         HttpSession session = request.getSession();
         session.setAttribute("cver_code", disaplystr);

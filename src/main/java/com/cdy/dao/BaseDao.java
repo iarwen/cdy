@@ -13,9 +13,9 @@ import javax.persistence.TypedQuery;
 import javax.validation.ConstraintViolation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.lang.reflect.ParameterizedType;
+import java.util.*;
+import java.util.function.BiConsumer;
 
 /**
  * DAO基类
@@ -28,6 +28,15 @@ abstract public class BaseDao<T extends BaseDomain> {
     protected Validator validator;
 
     private Class<T> entityClass;
+
+    // 构造
+    @SuppressWarnings("unchecked")
+    BaseDao() {
+        super();
+        // 获取泛型类型
+        entityClass = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+
+    }
 
     /**
      * 插入单个实体
@@ -133,13 +142,14 @@ abstract public class BaseDao<T extends BaseDomain> {
      * 执行只有一个参的HQL查询
      *
      * @param hql   不用写order子句
-     * @param param hql的参数
+     * @param field 查詢的字段
+     * @param value 查詢字段的值
      * @return 查询结果
      */
-    public List<T> find(String hql, Object param) {
-        List<Object> params = new ArrayList<>();
-        params.add(param);
-        return find(hql, null, params);
+    public List<T> find(String hql, String field, String value) {
+        Map<String, Object> param = new HashMap<>();
+        param.put(field, value);
+        return find(hql, param);
     }
 
     /**
@@ -149,8 +159,8 @@ abstract public class BaseDao<T extends BaseDomain> {
      * @param params hql的参数
      * @return 查询结果
      */
-    public List<T> find(String hql, List<Object> params) {
-        return find(hql, null, params);
+    public List<T> find(String hql, Map<String, Object> params) {
+        return find(hql, params, null);
     }
 
     /**
@@ -161,8 +171,8 @@ abstract public class BaseDao<T extends BaseDomain> {
      * @param params hql的参数
      * @return 查询结果
      */
-    public List<T> find(String hql, List<String> orders, List<Object> params) {
-        return find(hql, 0, 0, orders, params);
+    public List<T> find(String hql, Map<String, Object> params, List<String> orders) {
+        return find(hql, params, orders, 0, 0);
     }
 
     /**
@@ -175,8 +185,7 @@ abstract public class BaseDao<T extends BaseDomain> {
      * @param params    hql的参数
      * @return 查询结果
      */
-    public List<T> find(String hql, int startPage, int pageCount,
-                        List<String> orders, List<Object> params) {
+    public List<T> find(String hql, Map<String, Object> params, List<String> orders, int startPage, int pageCount) {
         Assert.isTrue(startPage >= 0);
         Assert.isTrue(pageCount >= 0);
 
@@ -184,13 +193,18 @@ abstract public class BaseDao<T extends BaseDomain> {
         //orders
         orders(orders, sb);
 
-        TypedQuery<T> tq = entityManager.createQuery(sb.toString(), entityClass);
+        final TypedQuery<T> tq = entityManager.createQuery(sb.toString(), entityClass);
+
 
         //where params
         if (!CollectionUtils.isEmpty(params)) {
-            for (int index = 0; index < params.size(); index++) {
-                tq.setParameter(index + 1, params.get(index));
-            }
+            params.forEach(new BiConsumer<String, Object>() {
+                @Override
+                public void accept(String key, Object val) {
+                    tq.setParameter(key, val);
+                }
+            });
+
         }
 
         //page

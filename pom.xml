@@ -35,6 +35,21 @@
                 <db.validationQuery>select 1 from dual</db.validationQuery>
             </properties>
         </profile>
+        <profile>
+            <id>test_mysql</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <build.param>this is company dev</build.param>
+                <db.dialect>org.hibernate.dialect.MySQL5Dialect</db.dialect>
+                <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+                <db.url>jdbc:mysql://localhost:3306/test1?useUnicode=true&amp;characterEncoding=utf-8</db.url>
+                <db.username>root</db.username>
+                <db.password>hiuseon123456</db.password>
+                <db.validationQuery>select 1 from dual</db.validationQuery>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencies>
@@ -235,8 +250,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -262,7 +277,7 @@
                         </component>
                     </components>
                     <componentProperties>
-                        <persistenceunit>kbi</persistenceunit>
+                        <persistenceunit>jpaPU</persistenceunit>
                         <outputfilename>schema.ddl</outputfilename>
                         <drop>false</drop>
                         <create>true</create>
@@ -281,6 +296,21 @@
                 <configuration>
                     <path>/</path>
                     <port>8023</port>
+                </configuration>
+            </plugin>
+            <!-- tomcat7:run 注意tomcat:run跑的是6，不支持servlet3 -->
+            <plugin>
+                <!-- http://tomcat.apache.org/maven-plugin-2.0/tomcat7-maven-plugin -->
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/</path>
+                    <port>8023</port>
+                    <url>http://localhost:8080/manager/text</url>
+                    <username>tomcat</username>
+                    <password>tomcat</password>
+                    <path>/${project.artifactId}</path>
                 </configuration>
             </plugin>
 

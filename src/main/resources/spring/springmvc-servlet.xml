@@ -26,7 +26,7 @@
 	<bean id="exceptionResolver" class="com.cdy.web.security.handler.ExceptionHandler">
 		<property name="exceptionMappings">
 			<props>
-				<prop key="com.cdy.exception.NotLoginException">redirect:/index.jsp</prop>
+				<prop key="com.cdy.exception.NotLoginException">/</prop>
 			</props>
 		</property>
 	</bean>
