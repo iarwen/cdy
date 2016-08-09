@@ -7,19 +7,18 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class TestUserService extends AbstractTestCase {
 
     @Autowired
     private UserService userService;
 
+
     @Test
     public void insertBatchList() throws Exception {
-        List<User> userlist = new ArrayList<User>();
-        for (int i = 0; i < 10000; i++) {
+        List<User> userlist = new ArrayList<>();
+        for (int i = 0; i < 1000; i++) {
             User user = getOneUser();
             userlist.add(user);
         }
@@ -68,6 +67,7 @@ public class TestUserService extends AbstractTestCase {
         List<User> ul = userService.queryUserByUserName("name");
         Assert.assertNotNull(ul);
         Assert.assertTrue(ul.size() == 1);
+        System.out.println(ul.get(0).getId());
         Assert.assertTrue(ul.get(0).getUserName().equals(user.getUserName()));
     }
 
@@ -77,7 +77,7 @@ public class TestUserService extends AbstractTestCase {
         user.setUserName("3name3");
         userService.insert(user);
 
-        User u = userService.getUserByUserName("3name3");
+        userService.getUserByUserName("3name3");
         User updateu = new User();
         updateu.setUserName("4name4");
         userService.update(updateu);

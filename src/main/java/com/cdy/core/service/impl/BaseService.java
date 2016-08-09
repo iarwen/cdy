@@ -5,6 +5,7 @@ import com.cdy.dao.BaseDao;
 import com.cdy.domain.BaseDomain;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wnetao_chang on 2016/8/6.<br>
@@ -83,7 +84,7 @@ public abstract class BaseService<T extends BaseDomain> implements IBaseService<
      * @return 返回相应的持久化PO实例
      */
     @Override
-    public T findById( int id) {
+    public T findById(int id) {
         return getDao().findById(id);
     }
 
@@ -106,8 +107,8 @@ public abstract class BaseService<T extends BaseDomain> implements IBaseService<
      * @return 查询结果
      */
     @Override
-    public List<T> find(String hql, Object param) {
-        return getDao().find(hql, param);
+    public List<T> find(String hql, String field, Object param) {
+        return getDao().find(hql, field, param);
     }
 
     /**
@@ -118,7 +119,7 @@ public abstract class BaseService<T extends BaseDomain> implements IBaseService<
      * @return 查询结果
      */
     @Override
-    public List<T> find(String hql, List<Object> params) {
+    public List<T> find(String hql, Map<String, Object> params) {
         return getDao().find(hql, params);
     }
 
@@ -131,8 +132,8 @@ public abstract class BaseService<T extends BaseDomain> implements IBaseService<
      * @return 查询结果
      */
     @Override
-    public List<T> find(String hql, List<String> orders, List<Object> params) {
-        return getDao().find(hql, orders, params);
+    public List<T> find(String hql, Map<String, Object> params, List<String> orders) {
+        return getDao().find(hql, params, orders);
     }
 
     /**
@@ -146,9 +147,8 @@ public abstract class BaseService<T extends BaseDomain> implements IBaseService<
      * @return 查询结果
      */
     @Override
-    public List<T> find(String hql, int startPage, int pageCount,
-                        List<String> orders, List<Object> params) {
-        return getDao().find(hql, startPage, pageCount, orders, params);
+    public List<T> find(String hql, Map<String, Object> params, List<String> orders, int startPage, int pageCount) {
+        return getDao().find(hql, params, orders, startPage, pageCount);
     }
 
     /**

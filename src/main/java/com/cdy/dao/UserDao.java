@@ -4,7 +4,9 @@ import com.cdy.domain.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User对象Dao
@@ -12,10 +14,6 @@ import java.util.List;
 @Repository
 public class UserDao extends BaseDao<User> {
 
-
-    private final String GET_USER_BY_USERNAME = "from User u where u.userName = :userName";
-
-    private final String QUERY_USER_BY_USERNAME = "from User u where u.userName like ?";
 
 
     public void remove(String id) {
@@ -31,12 +29,13 @@ public class UserDao extends BaseDao<User> {
      * @return 对应userName的User对象，如果不存在，返回null。
      */
     public User getUserByUserName(String userName) {
-        List<User> users = this.find(GET_USER_BY_USERNAME, userName);
+        List<User> users = this.find( "from User u where u.userName = :userName" , "userName", userName);
         if (users.size() == 0) {
             return null;
         } else {
             return users.get(0);
         }
+
     }
 
     /**
@@ -46,13 +45,12 @@ public class UserDao extends BaseDao<User> {
      * @return 用户名模糊匹配的所有User对象
      */
     public List<User> queryUserByUserName(String userName) {
-        List<String> orders = new ArrayList<String>();
-        orders.add("userId");
+        List<String> orders = new ArrayList<>();
+        orders.add("id");
 
-        List<Object> params = new ArrayList<Object>();
-        orders.add("%" + userName + "%");
-
-        return this.find(QUERY_USER_BY_USERNAME, orders, params);
+        Map<String, Object> params = new HashMap<>();
+        params.put("userName", "%" + userName + "%");
+        return this.find("from User u where u.userName like :userName", params, orders);
     }
 
 

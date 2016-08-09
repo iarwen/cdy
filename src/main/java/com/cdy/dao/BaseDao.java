@@ -15,7 +15,6 @@ import javax.validation.ValidationException;
 import javax.validation.Validator;
 import java.lang.reflect.ParameterizedType;
 import java.util.*;
-import java.util.function.BiConsumer;
 
 /**
  * DAO基类
@@ -47,6 +46,7 @@ abstract public class BaseDao<T extends BaseDomain> {
         if (t == null)
             return;
         Set<ConstraintViolation<T>> set = validator.validate(t);
+        t.setId(UUID.randomUUID().toString());
         if (!set.isEmpty())
             throw new ValidationException("insert时数据校验失败" + extraValidatorMsg(set));
         entityManager.persist(t);
@@ -146,7 +146,7 @@ abstract public class BaseDao<T extends BaseDomain> {
      * @param value 查詢字段的值
      * @return 查询结果
      */
-    public List<T> find(String hql, String field, String value) {
+    public List<T> find(String hql, String field, Object value) {
         Map<String, Object> param = new HashMap<>();
         param.put(field, value);
         return find(hql, param);
@@ -193,18 +193,11 @@ abstract public class BaseDao<T extends BaseDomain> {
         //orders
         orders(orders, sb);
 
-        final TypedQuery<T> tq = entityManager.createQuery(sb.toString(), entityClass);
-
+        TypedQuery<T> tq = entityManager.createQuery(sb.toString(), entityClass);
 
         //where params
         if (!CollectionUtils.isEmpty(params)) {
-            params.forEach(new BiConsumer<String, Object>() {
-                @Override
-                public void accept(String key, Object val) {
-                    tq.setParameter(key, val);
-                }
-            });
-
+            params.forEach(tq::setParameter);
         }
 
         //page

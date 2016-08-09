@@ -1,6 +1,7 @@
 package com.cdy.core.service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wentao_chang on 2016/8/6.
@@ -73,7 +74,7 @@ public interface IBaseService<T> {
      * @param param hql的参数
      * @return 查询结果
      */
-    List<T> find(String hql, Object param) throws Exception;
+    List<T> find(String hql, String field, Object param) throws Exception;
 
     /**
      * 执行带参的HQL查询
@@ -82,7 +83,7 @@ public interface IBaseService<T> {
      * @param params hql的参数
      * @return 查询结果
      */
-    List<T> find(String hql, List<Object> params) throws Exception;
+    List<T> find(String hql, Map<String,Object> params) throws Exception;
 
     /**
      * 执行带参的HQL查询
@@ -92,7 +93,7 @@ public interface IBaseService<T> {
      * @param params hql的参数
      * @return 查询结果
      */
-    List<T> find(String hql, List<String> orders, List<Object> params) throws Exception;
+    List<T> find(String hql, Map<String,Object> params, List<String> orders) throws Exception;
 
     /**
      * 执行分页带参的HQL查询
@@ -104,7 +105,7 @@ public interface IBaseService<T> {
      * @param params    hql的参数
      * @return 查询结果
      */
-    List<T> find(String hql, int startPage, int pageCount, List<String> orders, List<Object> params) throws Exception;
+    List<T> find(String hql, Map<String,Object> params, List<String> orders, int startPage, int pageCount) throws Exception;
 
     /**
      * 将clz下的记录全部查询出来
